@@ -5,6 +5,7 @@ import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 import Link from 'next/link';
 import { useQuery } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 export default function UserList() {
   const { data, isLoading, error } = useQuery('users', async () => {
@@ -25,6 +26,8 @@ export default function UserList() {
     });
 
     return users;
+  }, {
+    staleTime: 1000 * 5, // 5 seconds 
   });
 
   const isWideVersion = useBreakpointValue({
